@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer & Segmentation Dashboard</title>
+    <title>Dashboard de Clientes | SuperStore</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="dark-theme">
+<body class="ultra-dark-theme">
+
+    <!-- Fondo interactivo con orbes -->
+    <div class="bg-mesh">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
 
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
-        <div class="sidebar text-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 fs-4 fw-bold">
-                <i class="fa-solid fa-chart-pie me-2 logo-icon"></i>SuperStore
+        <div class="sidebar text-white glass-panel" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 fs-3 fw-bold">
+                <i class="fa-solid fa-gem text-gold me-2"></i><span class="text-gradient-gold">SuperStore</span>
             </div>
-            <div class="list-group list-group-flush mt-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white active">
-                    <i class="fas fa-home me-2"></i> Dashboard
+            <div class="list-group list-group-flush mt-2 px-3">
+                <a href="#" class="list-group-item list-group-item-action nav-link-custom active mb-2">
+                    <i class="fas fa-chart-line nav-icon"></i> Dashboard
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white">
-                    <i class="fas fa-users me-2"></i> Customers
+                <a href="#" class="list-group-item list-group-item-action nav-link-custom mb-2">
+                    <i class="fas fa-users nav-icon"></i> Clientes
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white">
-                    <i class="fas fa-box me-2"></i> Products
+                <a href="#" class="list-group-item list-group-item-action nav-link-custom mb-2">
+                    <i class="fas fa-box-open nav-icon"></i> Productos
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white">
-                    <i class="fas fa-shopping-cart me-2"></i> Orders
+                <a href="#" class="list-group-item list-group-item-action nav-link-custom mb-2">
+                    <i class="fas fa-shopping-bag nav-icon"></i> Pedidos
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-white mt-5">
-                    <i class="fas fa-cog me-2"></i> Settings
+                <a href="#" class="list-group-item list-group-item-action nav-link-custom mt-5">
+                    <i class="fas fa-cog nav-icon"></i> Configuración
                 </a>
             </div>
         </div>
@@ -45,123 +55,140 @@
         <div id="page-content-wrapper" class="w-100">
             
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark-glass py-3 px-4">
+            <nav class="navbar navbar-expand-lg navbar-dark glass-navbar py-3 px-4 mb-4">
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-outline-light d-md-none me-3" id="menu-toggle">
+                    <button class="btn btn-outline-gold d-md-none me-3" id="menu-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h2 class="m-0 page-title">Customer Segmentation Overview</h2>
+                    <h2 class="m-0 page-title">Inteligencia de Clientes</h2>
                 </div>
                 
                 <div class="ms-auto d-flex align-items-center profile-section">
                     <div class="text-end me-3 d-none d-md-block">
-                        <p class="m-0 text-white-50 small">Welcome Back,</p>
-                        <h6 class="m-0 text-white fw-bold">Admin User</h6>
+                        <p class="m-0 text-white-50 small fw-medium">Hola de nuevo,</p>
+                        <h6 class="m-0 text-white fw-bold">Administrador</h6>
                     </div>
-                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=ffd700&color=000" class="rounded-circle profile-img" alt="Profile">
+                    <div class="profile-img-container">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=c5a059&color=fff&bold=true" class="rounded-circle profile-img" alt="Profile">
+                        <div class="online-indicator"></div>
+                    </div>
                 </div>
             </nav>
 
-            <div class="container-fluid px-4 py-4 main-content">
+            <div class="container-fluid px-4 pb-5 main-content">
                 
                 <!-- Filters -->
-                <div class="row g-3 mb-4 filters-section custom-card p-3">
-                    <div class="col-md-3">
-                        <label class="form-label text-white-50"><i class="fas fa-layer-group me-1"></i> Segment</label>
-                        <select class="form-select filter-select" id="segmentFilter">
-                            <option value="All">All Segments</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label text-white-50"><i class="fas fa-globe me-1"></i> Region</label>
-                        <select class="form-select filter-select" id="regionFilter">
-                            <option value="All">All Regions</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label text-white-50"><i class="fas fa-calendar-alt me-1"></i> Year</label>
-                        <select class="form-select filter-select" id="yearFilter">
-                            <option value="All">All Years</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label text-white-50"><i class="fas fa-tags me-1"></i> Category</label>
-                        <select class="form-select filter-select" id="categoryFilter">
-                            <option value="All">All Categories</option>
-                        </select>
+                <div class="row g-4 mb-5 fade-in-up" style="animation-delay: 0.1s;">
+                    <div class="col-12">
+                        <div class="glass-card p-4 d-flex flex-wrap gap-4 align-items-end filter-container">
+                            <div class="filter-group flex-grow-1">
+                                <label class="filter-label"><i class="fas fa-layer-group text-gold me-2"></i>Segmento</label>
+                                <div class="select-wrapper">
+                                    <select class="form-select filter-select" id="segmentFilter">
+                                        <option value="All">Todos los Segmentos</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-group flex-grow-1">
+                                <label class="filter-label"><i class="fas fa-globe-americas text-gold me-2"></i>Región</label>
+                                <div class="select-wrapper">
+                                    <select class="form-select filter-select" id="regionFilter">
+                                        <option value="All">Todas las Regiones</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-group flex-grow-1">
+                                <label class="filter-label"><i class="fas fa-calendar-alt text-gold me-2"></i>Año</label>
+                                <div class="select-wrapper">
+                                    <select class="form-select filter-select" id="yearFilter">
+                                        <option value="All">Todos los Años</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="filter-group flex-grow-1">
+                                <label class="filter-label"><i class="fas fa-tags text-gold me-2"></i>Categoría</label>
+                                <div class="select-wrapper">
+                                    <select class="form-select filter-select" id="categoryFilter">
+                                        <option value="All">Todas las Categorías</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- KPIs -->
-                <div class="row g-4 mb-4">
-                    <div class="col-xl-3 col-md-6">
-                        <div class="custom-card p-4 kpi-card h-100">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-white-50 mb-1">Total Customers</p>
-                                    <h3 class="fw-bold mb-0 text-gradient" id="kpi-total-customers">---</h3>
-                                </div>
-                                <div class="icon-box bg-primary-soft">
-                                    <i class="fas fa-users text-primary"></i>
+                <div class="row g-4 mb-5">
+                    <div class="col-xl-3 col-md-6 fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="glass-card kpi-card p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="kpi-title m-0">Total de Clientes</h6>
+                                <div class="kpi-icon-wrapper blue-glow">
+                                    <i class="fas fa-users"></i>
                                 </div>
                             </div>
+                            <h2 class="kpi-value text-gradient-blue" id="kpi-total-customers">---</h2>
+                            <p class="kpi-trend positive"><i class="fas fa-arrow-up me-1"></i> Global histórico</p>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="custom-card p-4 kpi-card h-100">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-white-50 mb-1">Active Customers</p>
-                                    <h3 class="fw-bold mb-0 text-success-gradient" id="kpi-active-customers">---</h3>
-                                </div>
-                                <div class="icon-box bg-success-soft">
-                                    <i class="fas fa-user-check text-success"></i>
+                    <div class="col-xl-3 col-md-6 fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="glass-card kpi-card p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="kpi-title m-0">Clientes Activos</h6>
+                                <div class="kpi-icon-wrapper emerald-glow">
+                                    <i class="fas fa-user-check"></i>
                                 </div>
                             </div>
+                            <h2 class="kpi-value text-gradient-emerald" id="kpi-active-customers">---</h2>
+                            <p class="kpi-trend neutral"><i class="fas fa-minus me-1"></i> Según filtros</p>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="custom-card p-4 kpi-card h-100">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-white-50 mb-1">Avg Ticket</p>
-                                    <h3 class="fw-bold mb-0 text-warning-gradient" id="kpi-avg-ticket">---</h3>
-                                </div>
-                                <div class="icon-box bg-warning-soft">
-                                    <i class="fas fa-receipt text-warning"></i>
+                    <div class="col-xl-3 col-md-6 fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="glass-card kpi-card p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="kpi-title m-0">Ticket Promedio</h6>
+                                <div class="kpi-icon-wrapper gold-glow">
+                                    <i class="fas fa-receipt"></i>
                                 </div>
                             </div>
+                            <h2 class="kpi-value text-gradient-gold" id="kpi-avg-ticket">---</h2>
+                            <p class="kpi-trend positive"><i class="fas fa-arrow-up me-1"></i> Gasto por orden</p>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="custom-card p-4 kpi-card h-100">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-white-50 mb-1">Avg Sales / Customer</p>
-                                    <h3 class="fw-bold mb-0 text-info-gradient" id="kpi-avg-sales">---</h3>
-                                </div>
-                                <div class="icon-box bg-info-soft">
-                                    <i class="fas fa-money-bill-wave text-info"></i>
+                    <div class="col-xl-3 col-md-6 fade-in-up" style="animation-delay: 0.5s;">
+                        <div class="glass-card kpi-card p-4 h-100">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="kpi-title m-0">Ventas por Cliente</h6>
+                                <div class="kpi-icon-wrapper purple-glow">
+                                    <i class="fas fa-chart-line"></i>
                                 </div>
                             </div>
+                            <h2 class="kpi-value text-gradient-purple" id="kpi-avg-sales">---</h2>
+                            <p class="kpi-trend positive"><i class="fas fa-arrow-up me-1"></i> LTV estimado</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Charts Row 1 -->
-                <div class="row g-4 mb-4">
-                    <div class="col-lg-6">
-                        <div class="custom-card p-4 h-100">
-                            <h5 class="card-title text-white mb-4">Sales by Segment</h5>
-                            <div class="chart-container" style="position: relative; height:300px;">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-5 fade-in-up" style="animation-delay: 0.6s;">
+                        <div class="glass-card p-4 h-100 d-flex flex-column">
+                            <div class="card-header-custom">
+                                <h5>Ventas por Segmento</h5>
+                                <div class="header-action"><i class="fas fa-ellipsis-h"></i></div>
+                            </div>
+                            <div class="chart-container flex-grow-1 position-relative mt-3" style="min-height:300px;">
                                 <canvas id="chartSalesSegment"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="custom-card p-4 h-100">
-                            <h5 class="card-title text-white mb-4">Top 10 Customers by Sales</h5>
-                            <div class="chart-container" style="position: relative; height:300px;">
+                    <div class="col-lg-7 fade-in-up" style="animation-delay: 0.7s;">
+                        <div class="glass-card p-4 h-100 d-flex flex-column">
+                            <div class="card-header-custom">
+                                <h5>Top 10 Clientes (Por Ventas)</h5>
+                                <div class="header-action"><i class="fas fa-trophy text-gold"></i></div>
+                            </div>
+                            <div class="chart-container flex-grow-1 position-relative mt-3" style="min-height:300px;">
                                 <canvas id="chartTopCustomers"></canvas>
                             </div>
                         </div>
@@ -169,41 +196,50 @@
                 </div>
 
                 <!-- Charts Row 2 -->
-                <div class="row g-4 mb-4">
-                    <div class="col-lg-4">
-                        <div class="custom-card p-4 h-100">
-                            <h5 class="card-title text-white mb-4">Customers by Region</h5>
-                            <div class="chart-container" style="position: relative; height:300px;">
-                                <canvas id="chartCustomersRegion"></canvas>
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-7 fade-in-up" style="animation-delay: 0.8s;">
+                        <div class="glass-card p-4 h-100 d-flex flex-column">
+                            <div class="card-header-custom">
+                                <h5>Ticket Promedio por Segmento</h5>
+                                <div class="header-action"><i class="fas fa-coins text-emerald"></i></div>
+                            </div>
+                            <div class="chart-container flex-grow-1 position-relative mt-3" style="min-height:300px;">
+                                <canvas id="chartAvgTicketSegment"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="custom-card p-4 h-100">
-                            <h5 class="card-title text-white mb-4">Avg Ticket by Segment</h5>
-                            <div class="chart-container" style="position: relative; height:300px;">
-                                <canvas id="chartAvgTicketSegment"></canvas>
+                    <div class="col-lg-5 fade-in-up" style="animation-delay: 0.9s;">
+                        <div class="glass-card p-4 h-100 d-flex flex-column">
+                            <div class="card-header-custom">
+                                <h5>Distribución por Región</h5>
+                                <div class="header-action"><i class="fas fa-map-marked-alt text-blue"></i></div>
+                            </div>
+                            <div class="chart-container flex-grow-1 position-relative mt-3" style="min-height:300px;">
+                                <canvas id="chartCustomersRegion"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- DataTable -->
-                <div class="row g-4 mb-4">
+                <div class="row g-4 fade-in-up" style="animation-delay: 1.0s;">
                     <div class="col-12">
-                        <div class="custom-card p-4">
-                            <h5 class="card-title text-white mb-4">Customer Ranking & Lifetime Value</h5>
-                            <div class="table-responsive">
-                                <table id="customersTable" class="table table-dark table-hover w-100">
+                        <div class="glass-card p-4">
+                            <div class="card-header-custom mb-4">
+                                <h5>Ranking de Clientes y Valor Comercial</h5>
+                                <button class="btn btn-premium-export"><i class="fas fa-download me-2"></i> Exportar VIP</button>
+                            </div>
+                            <div class="table-responsive elegant-scroll">
+                                <table id="customersTable" class="table table-luxury w-100">
                                     <thead>
                                         <tr>
-                                            <th>Customer Name</th>
-                                            <th>Segment</th>
-                                            <th>Region</th>
-                                            <th>Total Orders</th>
-                                            <th>Total Sales ($)</th>
-                                            <th>Total Profit ($)</th>
-                                            <th>Avg Ticket ($)</th>
+                                            <th>Cliente</th>
+                                            <th>Segmento</th>
+                                            <th>Región</th>
+                                            <th>Pedidos Totales</th>
+                                            <th>Ventas Brutas</th>
+                                            <th>Ganancia Neta</th>
+                                            <th>Ticket Prom.</th>
                                         </tr>
                                     </thead>
                                     <tbody>
