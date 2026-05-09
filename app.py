@@ -11,6 +11,7 @@ def get_base_query(session, *entities):
     para procesar filtros y agregaciones.
     """
     return session.query(*entities)\
+        .select_from(OrderDetail)\
         .join(Order, OrderDetail.order_id == Order.order_id)\
         .join(Customer, Order.customer_id == Customer.customer_id)\
         .join(Segment, Customer.segment_id == Segment.segment_id)\

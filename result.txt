@@ -1,0 +1,69 @@
+Traceback (most recent call last):
+  File "C:\Users\Adrian\Desktop\project 2\test_data.py", line 6, in <module>
+    response = myapp.get_dashboard_data()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\Desktop\project 2\app.py", line 111, in get_dashboard_data
+    ), request.args).group_by(Location.region).all()
+                                               ^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2704, in all
+    return self._iter().all()  # type: ignore
+           ^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\engine\base.py", line 1633, in _execute_clauseelement
+    compiled_sql, extracted_params, cache_hit = elem._compile_w_cache(
+                                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 716, in _compile_w_cache
+    compiled_sql = self._compiler(
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\elements.py", line 324, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\compiler.py", line 1461, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\compiler.py", line 901, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\compiler.py", line 947, in process
+    return obj._compiler_dispatch(self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\visitors.py", line 138, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\compiler.py", line 4807, in visit_select
+    compile_state = select_stmt._compile_state_factory(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\sql\base.py", line 775, in create_for_statement
+    return klass.create_for_statement(statement, compiler, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 447, in create_for_statement
+    return cls._create_orm_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 1246, in _create_orm_context
+    self._setup_for_generate()
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 1281, in _setup_for_generate
+    self._join(query._setup_joins, self._entities)
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 1922, in _join
+    self._join_left_to_right(
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 1957, in _join_left_to_right
+    ) = self._join_determine_implicit_left_side(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Adrian\AppData\Local\Programs\Python\Python311\Lib\site-packages\sqlalchemy\orm\context.py", line 2112, in _join_determine_implicit_left_side
+    raise sa_exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Can't determine which FROM clause to join from, there are multiple FROMS which can join to this entity. Please use the .select_from() method to establish an explicit left side, as well as providing an explicit ON clause if not present already to help resolve the ambiguity.
