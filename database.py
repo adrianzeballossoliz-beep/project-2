@@ -11,7 +11,7 @@ DB_USER     = "postgres"
 DB_PASSWORD = "123456"
 DB_HOST     = "localhost"
 DB_PORT     = "5432"
-DB_NAME     = "superstor"
+DB_NAME     = "superstore_orm"
 DB_SCHEMA   = "public"
 # ──────────────────────────────────────────────────────────────────────────────
 # ──────────────────────────────────────────────────────────────────────────────

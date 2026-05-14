@@ -33,9 +33,9 @@ $(document).ready(function() {
         },
         columns: [
             { data: 'customer_name' },
-            { data: 'segment_name' },
+            { data: 'segment' },
             { data: 'region' },
-            { data: 'orders_count', render: $.fn.dataTable.render.number(',', '.', 0) },
+            { data: 'total_orders', render: $.fn.dataTable.render.number(',', '.', 0) },
             { data: 'total_sales', render: $.fn.dataTable.render.number(',', '.', 2, '$') },
             { data: 'total_profit', render: $.fn.dataTable.render.number(',', '.', 2, '$') },
             { data: 'avg_ticket', render: $.fn.dataTable.render.number(',', '.', 2, '$') }
@@ -58,6 +58,12 @@ $(document).ready(function() {
 
     // Filter Change Event
     $('.filter-select').on('change', function() {
+        loadDashboardData();
+    });
+
+    // Reset Filters Event
+    $('#resetFiltersBtn').on('click', function() {
+        $('.filter-select').val('All');
         loadDashboardData();
     });
 
